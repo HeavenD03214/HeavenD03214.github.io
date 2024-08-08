@@ -307,8 +307,11 @@ handler 拒绝策略
 ```
 
 ### 提交流程
-```flow
-提交流程
+```mermaid
+---
+title: 提交流程
+---
+flowchart LR
   submit=>start: 提交任务
   coremax=>condition: 核心线程是否已满
   queuemax=>condition: 阻塞队列是否已满
