@@ -3,8 +3,8 @@
 title: Java基础
 date: 2024-08-07
 updated: 
-tags:  ["java","多线程"]
-categories:
+tags:  ["java","多线程","Lambda表达式","stream流","JavaAPI","JVM"]
+categories: 基础知识
 keywords:
 description:
 top_img:
