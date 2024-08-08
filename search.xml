@@ -447,9 +447,16 @@
 <p>最后，我们检查引用队列queue，如果幻象引用phantomRef所指向的对象已经被垃圾回收器回收，那么phantomRef会被加入到引用队列中。我们可以通过poll()方法从队列中取出引用，确认对象已经被回收。</p>
 <p>幻象引用的主要应用场景是在对象被垃圾回收器回收之后，进行一些必要的清理工作，例如关闭资源、更新数据库状态等。由于幻象引用本身无法保持对象的可达性，因此它不能用于对象的访问，只能用于监听对象的销毁事件。</p>
 ]]></content>
+      <categories>
+        <category>基础知识</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>多线程</tag>
+        <tag>Lambda表达式</tag>
+        <tag>stream流</tag>
+        <tag>JavaAPI</tag>
+        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
