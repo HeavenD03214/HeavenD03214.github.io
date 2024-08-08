@@ -39,7 +39,7 @@ abcjs:
 
 - Hexo
 
-  - ```cmd
+  - ```
     $ npm install -g hexo-cli //全局安装
     $ npm install hexo //局部安装
     ```
@@ -54,7 +54,7 @@ abcjs:
 
 - 清除部署缓存并开启本地服务
 
-  - ```cmd
+  - ```
     hexo clean
     hexo server
     //访问localhost:4000可以看到hexo的helloWorld博客界面
@@ -66,7 +66,7 @@ abcjs:
 
 - 从github上拉取或者通过NPM下载
 
-  - ```cmd
+  - ```
     git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
     
     npm i hexo-theme-butterfly
@@ -114,7 +114,7 @@ deploy:
   branch: gh_pages # 注意分支名，要与之后的actions中配置相对应，最好就用这个
 ```
 
-- ```cmd
+- ```
   //博客根目录执行
   hexo clean //清除旧的部署文件
   hexo deploy //一键部署
