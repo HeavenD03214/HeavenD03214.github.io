@@ -26,13 +26,6 @@ aside:
 abcjs:
 
 ---
-
-
-作者: Jerry
-連結: https://butterfly.js.org/posts/dc584b87/#Post-Front-matter
-來源: Butterfly
-著作權歸作者所有。商業轉載請聯繫作者獲得授權，非商業轉載請註明出處。
-
 ### Java基本数据类型
 
 - 基本数据类型：6种数字类型（byte/short/int/long/float/double）、1种字符型（char）、1种布尔型（boolean）
