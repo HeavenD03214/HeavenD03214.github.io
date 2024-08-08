@@ -26,7 +26,7 @@ aside:
 abcjs:
 
 ---
-### Java基本数据类型
+# Java基本数据类型
 
 - 基本数据类型：6种数字类型（byte/short/int/long/float/double）、1种字符型（char）、1种布尔型（boolean）
 - 引用数据类型：类（Class）、接口（Interface）、数组（Array）
@@ -35,7 +35,7 @@ abcjs:
 - 引用类型：参数传递时，以拷贝引用地址的方式传递给接收变量，而非复制整个数据本体。**除八大基本数据类型之外的所有数据类型，都为引用数据类型**。所有引用数据类型的默认值都为null。
 - 为了基本数据类型可以与引用数据类型互相转换、以利用彼此的特性，java为每一种基本数据类型提供了相应的包装类。包装类对基本数据类型进行了封装，提供了丰富的功能，**包装类是基本类型的拓展**
 
-#### float、double不能用来表示精确的值，运算不精确
+## float、double不能用来表示精确的值，运算不精确
 
 解决方案：BigDecimal。创建BigDecimal对象的方式：
 
@@ -43,11 +43,11 @@ abcjs:
 - BigDecimal(String val) : String类型的数据作为参数，交给BigDecimal对象【用这个】
   注：double->String 直接拼接一个字符串""就行。
 
-#### 数据类型转换
+## 数据类型转换
 
 转换从低级到高级：byte、short、char（三者同级）——> int ——> long ——> float ——> double
 
-#### 基本数据类型与引用数据类型区别
+## 基本数据类型与引用数据类型区别
 
 - 存储方式：基本数据类型直接存储值，而引用数据类型存储的是对象的引用（内存地址）
 - 内存分配：基本数据类型在栈上分配内存，引用数据类型在堆上分配内存（具体内容存放在堆中，栈中存放的是其具体内容所在内存的地址）。栈上的分配速度较快，但是内存空间较小，而堆上的分配速度较慢，但可以分配更大的内存空间
@@ -56,7 +56,7 @@ abcjs:
 - 参数传递：基本数据类型作为方法的参数传递时，传递的是值的副本，不会修改原始值。而引用数据类型作为方法的参数传递时，传递的是对象的引用，可以修改对象的属性或状态
 - 比较操作：基本数据类型使用==进行比较时，比较的是值是否相等。而引用数据类型使用==进行比较时，比较的是引用是否指向同一个对象，如果要比较对象的内容是否相同，需要使用equals()方法
 
-#### 基本数据类型与包装类区别
+## 基本数据类型与包装类区别
 
 - 存储方式：基本类型直接存储值，而包装类型存储的是对应基本类型值的对象。
 - 空值处理：基本类型没有空值（null）的概念，而包装类型可以将null作为有效值来表示缺失或无效值。
@@ -66,7 +66,7 @@ abcjs:
 - 泛型支持：泛型只能使用引用类型，不能直接使用基本类型。因此，当需要在泛型中使用基本类型时，需要使用对应的包装类型。
 - 比较方式：基本类型使用==进行比较时，比较的是值是否相等。而包装类型使用==进行比较时，比较的是引用是否指向同一个对象，而不是比较值是否相等。若要比较包装类型的值是否相等，需要使用equals()方法。
 
-### 面向对象(OOP)思想
+# 面向对象(OOP)思想
 
 > 1. 封装（Encapsulation）
 >    数据，属性，方法捆绑在一起，成为黑盒。设置访问权限保护数据的完整性，减少错误，增强模块间的独立性。
@@ -82,14 +82,14 @@ abcjs:
 
 
 
-### Java内存分区
-#### 本地内存
+# Java内存分区
+## 本地内存
 > 由操作系统分配和管理的内存区域，它与虚拟机无关。在 Java 中，本地内存通常用于存储 JNI（Java Native Interface）方法调用时的数据以及本地方法库（Native Libraries）等内容。JNI 允许 Java 代码调用本地（非 Java）方法，而本地方法库是由 C、C++ 等语言编写的动态链接库，用于实现这些本地方法。本地内存的分配和释放由操作系统负责管理，而不受 Java 虚拟机的控制。
 
-##### 直接内存
+### 直接内存
 > 直接内存是一种特殊的内存缓冲区，并不在 Java 堆或方法区中分配的，而是通过 JNI 的方式在本地内存上分配的。直接内存并不是虚拟机运行时数据区的一部分，也不是虚拟机规范中定义的内存区域，但是这部分内存也被频繁地使用。而且也可能导致 OutOfMemoryError 错误出现。用于提供在堆之外进行对象分配的一种方式。
 
-##### 元空间
+### 元空间
 
 > 方法区（Method Area）/ 元空间（Metaspace）：
 > 方法区是 JVM 运行时数据区域的一块逻辑区域，是各个线程共享的内存区域。方法区会存储已被虚拟机加载的 类信息、字段信息、方法信息、常量、静态变量、即时编译器编译后的代码缓存等数据。
@@ -99,22 +99,22 @@ abcjs:
 >   - 方法区和永久代以及元空间的关系很像 Java 中接口和类的关系，类实现了接口，这里的类就可以看作是永久代和元空间，接口可以看作是方法区，也就是说永久代以及元空间是 HotSpot 虚拟机对虚拟机规范中方法区的两种实现方式。在 JDK 1.8 之前称为方法区，而在 JDK 1.8 及以后版本使用元空间代替了方法区。
 >     运行时常量池：Class 文件中除了有类的版本、字段、方法、接口等描述信息外，还有用于存放编译期生成的各种字面量（Literal）和符号引用（Symbolic Reference）的 常量池表(Constant Pool Table) 。
 
-###### 运行时常量池
-#### 运行时数据
+## 运行时常量池
+## 运行时数据
 > Java 虚拟机在运行 Java 程序时使用的不同内存区域，由虚拟机动态管理。
 
-##### 线程共享
-###### 堆
+### 线程共享
+## 堆
 > 线程共享的内存区域，用于存储对象实例和数组等动态分配的内存，在虚拟机启动时创建。是 Java 虚拟机管理的最大的一块内存区域，也是垃圾回收的主要区域。
 >
 > - 字符串常量池：是 JVM 为了提升性能和减少内存消耗针对字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。HotSpot 虚拟机中字符串常量池保存的是字符串（key）和 字符串对象的引用（value）的映射关系，字符串对象的引用指向堆中的字符串对象。
 
-###### 方法区
-###### 直接内存
+## 方法区
+## 直接内存
 > 非运行时数据区的一部分
 
-##### 线程私有
-###### 虚拟机栈
+### 线程私有
+## 虚拟机栈
 > 线程私有的内存区域，每个线程都有自己的虚拟机栈。用于存储方法执行时的局部变量、操作数栈、动态链接、方法出口等信息。方法调用的数据需要通过栈进行传递，每一次方法调用都会有一个对应的栈帧被压入栈中，方法调用结束后，栈帧被弹出。局部变量放在栈里面，形参属于局部变量。而成员变量随着类的创建而产生，放在堆里面。
 >
 > - 局部变量表：主要存放了编译期可知的各种数据类型（boolean、byte、char、short、int、float、long、double）、对象引用（reference 类型，它不同于对象本身，可能是一个指向对象起始地址的引用指针，也可能是指向一个代表对象的句柄或其他与此对象相关的位置）。
@@ -123,11 +123,11 @@ abcjs:
 > - 方法出口：Java 方法有两种返回方式，一种是 return 语句正常返回，一种是抛出异常。不管哪种返回方式，都会导致栈帧被弹出。也就是说， 栈帧随着方法调用而创建，随着方法结束而销毁。无论方法正常完成还是异常完成都算作方法结束。
 >   除了 StackOverFlowError 错误之外，栈还可能会出现OutOfMemoryError错误，这是因为如果栈的内存大小可以动态扩展， 如果虚拟机在动态扩展栈时无法申请到足够的内存空间，则抛出OutOfMemoryError异常。
 
-###### 本地方法栈
+## 本地方法栈
 > 类似于虚拟机栈，但是用于执行本地方法（Native Method）的线程私有内存区域。
 > 存储本地方法的局部变量、操作数栈、动态链接等信息。
 
-###### 程序计数器
+## 程序计数器
 > 线程私有的内存区域，每个线程都有一个程序计数器。
 > 主要用于记录当前线程正在执行的字节码指令的地址或者正在执行的方法的当前行号。字节码解释器通过改变程序计数器来依次读取指令，从而实现代码的流程控制，如：顺序执行、选择、循环、异常处理。
 > 在线程切换时，程序计数器是不会发生线程间切换的，每个线程都会有独立的计数器记录执行位置。当线程被切换回来的时候能够知道该线程上次运行到哪儿了。
@@ -135,13 +135,13 @@ abcjs:
 
 
 
-### Java内存回收算法
+# Java内存回收算法
 
 
 
-### 常用Java Api
+# 常用Java Api
 
-#### String、StringBuffer和 StringBuilder
+## String、StringBuffer和 StringBuilder
 
 > 为什么拼接、反转字符串的时候要用StringBuilder？
 >
@@ -153,13 +153,13 @@ abcjs:
 >
 > 拼接、修改等操作字符串使用StringBuilder。
 
-#### BigDecimal
+## BigDecimal
 
-##### BigDecimal与MySQL的映射关系
+### BigDecimal与MySQL的映射关系
 
 > 在MySQL中，我们可以使用DECIMAL数据类型来存储高精度的数值。DECIMAL类型可以指定精度和小数位数，因此非常适合存储BigDecimal类型的数据。在Java中，我们可以使用BigDecimal的构造方法将DECIMAL类型的数据转换为BigDecimal对象，也可以使用BigDecimal的toString方法将BigDecimal对象转换为DECIMAL类型的字符串。
 
-##### 注意事项
+### 注意事项
 【强制】 禁止使用构造方法BigDecimal(double) 的方式把 double 值转化为 BigDecimal 对象。
 
  说明：BigDecimal(double) 存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。
@@ -168,13 +168,13 @@ abcjs:
 
  正例： 优先推荐入参为 String 的构造方法，或使用 BigDecimal 的 valueOf 方法，此方法内部其实执行了 Double 的 toString，而 Double 的 toString 按 double 的实际能表达的精度对尾数进行了截断
 
-### Java多线程
+# Java多线程
 
-#### 创建线程的方式
+## 创建线程的方式
 
 > 本质都是基于Runnable接口的方式来创建的
 
-##### 1.继承Thread类
+### 1.继承Thread类
 
 ```java
 public class xxx extend Thread{
@@ -189,7 +189,7 @@ public class xxx extend Thread{
 }
 ```
 
-##### 2.实现Runnable接口
+### 2.实现Runnable接口
 
 ```java
 public class xxx implements Runnable{
@@ -207,7 +207,7 @@ public class xxx implements Runnable{
 
 可以使用匿名内部类或Lambda表达式的方式
 
-###### 匿名内部类
+## 匿名内部类
 
 ```java
 new Thread(new Runnable(){
@@ -218,7 +218,7 @@ new Thread(new Runnable(){
 }).start();
 ```
 
-###### Lambda表达式
+## Lambda表达式
 
 参数是接口实现实例且接口只需要实现一个方法（函数式接口）
 
@@ -228,7 +228,7 @@ new Thread(()->{
 }).start();
 ```
 
-##### 3.实现Callable接口
+### 3.实现Callable接口
 
 ```java
 import java.util.concurrent.Callable;
@@ -258,7 +258,7 @@ public class CallableExample implements Callable<String> {
 }
 ```
 
-##### 4.利用线程池创建
+### 4.利用线程池创建
 
 ```java
 public class xxx implements Runnable{
@@ -274,15 +274,15 @@ public class xxx implements Runnable{
 }
 ```
 
-##### 5.匿名内部类/6.Lambda表达式
+### 5.匿名内部类/6.Lambda表达式
 
 - Runnable接口是函数式接口
 
 
 
-#### 线程操作
+## 线程操作
 
-##### 为什么不推荐用Excutores创建线程池
+### 为什么不推荐用Excutores创建线程池
 
 ```java
 //存在阻塞队列，最大值为Interger.MAX_VALUE，高并发情况下阻塞队列中等待任务过多会造成OOM
@@ -294,7 +294,7 @@ newCachedThreadPool()
     new ThreadPoolExecutor(参数如下)
 ```
 
-##### 参数说明
+### 参数说明
 
 ```java
 corePoolSize 核心线程数量
@@ -306,7 +306,7 @@ threadFactory 线程工厂(创建线程)
 handler 拒绝策略
 ```
 
-##### 提交流程
+### 提交流程
 ```flow
 提交流程
   submit=>start: 提交任务
@@ -328,7 +328,7 @@ handler 拒绝策略
 
 
 
-##### 执行流程
+### 执行流程
 
 - 执行任务的run方法
 
@@ -354,7 +354,7 @@ compareAndDecrementWorkerCount(int expect){  //销毁线程
 }    
 ```
 
-##### 线程异常中断
+### 线程异常中断
 
 任务执行报错就会抛出异常，线程处理时会捕获并抛出，线程抛出异常就会导致线程中断销毁
 
@@ -362,7 +362,7 @@ compareAndDecrementWorkerCount(int expect){  //销毁线程
   - 一般任务执行失败都需要进行相关失败处理
   - 线程池中可以设置一个异常捕获处理
 
-##### 线程关闭
+### 线程关闭
 
 ```java
 A： threadPool.shutdown();||
@@ -375,9 +375,9 @@ B： threadPool.shutdownNow();
 - 线程执行拿任务过程中被通知关闭，即阻塞拿任务时，会触发InterruptedException异常，将timeout设置为false
 - 线程刚刚拿到任务被通知要关闭，会将任务执行完后再在拿取任务时被关闭(return null)
 
-#### 锁
+## 锁
 
-##### Sychroized
+### Sychroized
 
 > Java中的一个关键字
 >
@@ -396,7 +396,7 @@ B： threadPool.shutdownNow();
 > - 底层有锁升级过程
 >   - 无锁=>偏向锁=>轻量级锁=>重量级锁
 
-###### 锁升级过程
+## 锁升级过程
 
 > 通过并发量，动态调节锁的实现
 
@@ -412,7 +412,7 @@ B： threadPool.shutdownNow();
 
   
 
-##### ReentrantLock
+### ReentrantLock
 
 > JDK提供的一个类
 >
@@ -437,14 +437,14 @@ B： threadPool.shutdownNow();
 >
 > 没有锁升级过程
 
-###### 公共锁和非公平锁
+## 公共锁和非公平锁
 
 > 只体现在加锁阶段，对线程被唤醒阶段没有影响
 
 - 公平锁会检查AQS队列中是否存在线程在排队，如果有排队则当前线程也进行排队
 - 非公平锁不会去检查是否有线程排队，直接去竞争锁资源，如果没有竞争到则也进行排队
 
-#### ThreadLocal
+## ThreadLocal
 
 线程本地存储机制，利用该机制将数据缓存在某个线程内部，该线程可以在任意时刻，任意方法中获取缓存的数据
 
@@ -452,13 +452,13 @@ B： threadPool.shutdownNow();
 
 - ThreadLocalMap存储Entry（键值对）对象，其中键为ThreadLocal值为缓存的数据
 
-##### 内存泄漏
+### 内存泄漏
 
 - ThreadLocal对象使用完后应该对Entry对象进行手动回收（ThreadLocal的remove方法）
 
 - 线程通过强引用指向ThreadLocalMap，ThreadLocalMap又通过强引用指向Entry，所以线程不被回收，Entry对象也就不会回收
 
-##### 应用场景 
+### 应用场景 
 
 > 共享变量，但每个线程互不影响，相互隔离，就可以使用ThreadLocal
 
@@ -469,23 +469,23 @@ B： threadPool.shutdownNow();
   - springmvc的HttpSession、HttpServletReuquest、HttpServletResponse，servlet是单例的
   - springmvc允许在controller类中通过@Autowired配置request，response，requestcontext等实例对象
 
-#### Tomcat为什么要自定义类加载器
+## Tomcat为什么要自定义类加载器
 
 一个 T omcat 中可以部署多个应用，而每个应用中都存在很多类，并且各个应用中的类是独立的全类名是可以相同的，比如一个订单系统中可能存在 com .xushu.User 类，一个库存系统中可能也存在 com.xushu.User类 ，一个 Tomcat, 不管内部部署了多少应用， Tomcat 启动之后就是一个Javai程，也就是一个 JVM ，所以如果 Tomcat 中只存在一个类加载器，比如默认的AppClassLoader, 那么就只能加 载一 个 com.xushu.User类 ，这是有问题的，而在 Tomcat 中，为部署的每个应用都生成一个类加载器实例，名字叫做 WebAppClassLoader, 这样 Tomcat 中每个应用就可以使用自己的类加载器去加载自己的类，从而达到应用之间的类隔离，不出现冲突。另外 Tomcat 还利用自定义加载器实现了热加载功能·
 
-### Lambda表达式
+# Lambda表达式
 
 语法糖，简化某些匿名内部类的写法
 
-#### 基本格式
+## 基本格式
 
 ```
 (参数列表)->{代码}
 ```
 
-#### 举例
+## 举例
 
-##### 匿名内部类
+### 匿名内部类
 
 ```java
 new Thread(new Runnable(){
@@ -496,7 +496,7 @@ new Thread(new Runnable(){
 }).start();
 ```
 
-##### Lambda表达式
+### Lambda表达式
 
 调用的方法参数是接口实现实例且接口只有有一个抽象方法（函数式接口）
 
@@ -514,7 +514,7 @@ new Thread(()->{
 }).start();
 ```
 
-### Stream流
+# Stream流
 
 Java8新特性，使用函数式编程，可以使对数组和集合进行链状流式操作更加方便
 
@@ -522,7 +522,7 @@ Java8新特性，使用函数式编程，可以使对数组和集合进行链状
 - 流是一次性的，执行完释放
 - 不会影响原数据
 
-#### 快速入门
+## 快速入门
 
 ```java
 数组和集合.stream()
@@ -538,21 +538,21 @@ Java8新特性，使用函数式编程，可以使对数组和集合进行链状
             })
 ```
 
-##### 创建流
+### 创建流
 
-###### 单列集合
+## 单列集合
 
 ```java
 集合对象.stream()
 ```
 
-###### 数组
+## 数组
 
 ```java
 Arrays.stream(数组) || Stream.of(数组)
 ```
 
-###### 双列集合
+## 双列集合
 
 //将键值对封装成Entry对象后再创建流对象
 
@@ -560,7 +560,7 @@ Arrays.stream(数组) || Stream.of(数组)
 map.entrySet().Stream()
 ```
 
-##### 中间操作
+### 中间操作
 
 - filter 重写过滤条件（返回true / false）过滤数据
 
@@ -631,7 +631,7 @@ map.entrySet().Stream()
     .skip(int)
     ```
 
-##### 终结操作
+### 终结操作
 
 - forEach() 遍历流中对象并进行相关操作
 
@@ -720,9 +720,9 @@ map.entrySet().Stream()
 
 
 
-#### Optional
+## Optional
 
-##### 创建对象
+### 创建对象
 
 - ```java
   Author author = getAuthor(); //实际上期望getAuthor()的返回值就是Optional，进行提前封装
@@ -737,7 +737,7 @@ map.entrySet().Stream()
   Optional.empty);
   ```
 
-##### 安全获取值
+### 安全获取值
 
 ```java
 author.orElseGet(() -> new Author()); //不为空返回author，为空返回默认值new Author()
@@ -746,31 +746,31 @@ author.orElseGet(() -> new Author()); //不为空返回author，为空返回默�
 author.orElseThrow(() -> new RuntimeException("")); //不为空返回author，为空返回默认值new Author()
 ```
 
-##### 过滤
+### 过滤
 
 - 使用.filter()同前面的中间操作一样,返回值是过滤后的Optional<T>
 
-##### 判断
+### 判断
 
 - 除去ifpresent（函数式接口传参）外还有一个isPresent需要用if else判断不够优雅
 
-##### 数据转换
+### 数据转换
 
 - 使用.map()同前面的中间操作一样,返回值是过滤后的Optional<T>
 
 
 
-#### 函数式接口
+## 函数式接口
 
 接口当中只有一个抽象方法（一般都有@FunctionalInterface注解）
 
 
 
-#### 方法引用
+## 方法引用
 
 - 基本格式： 类名或对象名::方法名
 
-##### 引用类的静态方法
+### 引用类的静态方法
 
 ```java
 .map(author -> author.getAge())
@@ -781,12 +781,12 @@ author.orElseThrow(() -> new RuntimeException("")); //不为空返回author，�
 .map(String::valueOf)
 ```
 
-##### 引用对象的实例方法
+### 引用对象的实例方法
 
 - 重写方法仅一行代码，使用某个实例对象的方法，且所有参数都传入该方法
   - 该对象::方法名
 
-##### 引用类的实例方法
+### 引用类的实例方法
 
 - 重写方法仅一行代码，使用第一个参数的成员方法，且其它所有参数都传入该方法
   - 该成员对象::方法名
@@ -797,7 +797,7 @@ author.orElseThrow(() -> new RuntimeException("")); //不为空返回author，�
 .map(author::getAge)
 ```
 
-##### 构造器引用
+### 构造器引用
 
 - 重写方法仅一行代码，使用某个类的构造器，且所有参数都传入该构造器
   - 该类名::new
@@ -808,9 +808,9 @@ author.orElseThrow(() -> new RuntimeException("")); //不为空返回author，�
 .map(StringBuilder::new)
 ```
 
-#### 高级用法
+## 高级用法
 
-##### 基本数据类型优化
+### 基本数据类型优化
 
 - 使用基本数据类型包装类进行操作时会进行不断地自动拆箱装箱，数据量大时会消耗很多时间
 
@@ -822,7 +822,7 @@ author.orElseThrow(() -> new RuntimeException("")); //不为空返回author，�
 .map(age -> age + 10) //int基本类型操作，无需拆箱装箱
 ```
 
-#### 并行流
+## 并行流
 
 - 多线程执行流操作  
 
@@ -833,15 +833,15 @@ author.orElseThrow(() -> new RuntimeException("")); //不为空返回author，�
 
 
 
-### 引用方法
+# 引用方法
 
-#### 强引用 (Strong Reference)
+## 强引用 (Strong Reference)
 
 这是最常用的引用类型。当一个对象被强引用关联时，只要这个引用存在，垃圾收集器就不会回收这个对象。
 实例化一个对象并将其赋值给一个变量时，这个变量就是一个强引用。
 只有当没有强引用指向一个对象，并且该对象不可达时，垃圾收集器才可能回收它。
 
-#### 软引用 (Soft Reference)
+## 软引用 (Soft Reference)
 
 软引用是用来描述那些有用但不是必须的对象。在系统将要发生内存溢出异常前，会把这些对象列进回收范围之中进行第二次回收。
 如果使用软引用来保存一个对象，只要内存足够，对象就不会被回收。
@@ -912,7 +912,7 @@ public class SoftReferenceExample {
 
 在实际应用中，软引用通常用于缓存场景，例如缓存图像、文件或计算结果，这样在内存压力增加时，这些缓存项可以被释放，避免程序因内存不足而崩溃。
 
-#### 弱引用 (Weak Reference)
+## 弱引用 (Weak Reference)
 
 弱引用的强度比软引用更低。在下一次垃圾收集发生时，不管系统内存是否充足，弱引用都会被回收。
 弱引用对象在下一次垃圾收集时一定会被回收，即使系统中还有足够的内存。
@@ -977,7 +977,7 @@ public class WeakReferenceExample {
 
 弱引用通常用于实现线程局部变量（ThreadLocal）的自动清理功能，或者用于创建不需要长时间存在的对象的缓存。当对象不再被任何强引用持有时，弱引用允许这些对象迅速被垃圾回收器回收，从而节省内存。
 
-#### 幻象引用 (Phantom Reference 或 虚引用)
+## 幻象引用 (Phantom Reference 或 虚引用)
 
 幻象引用是最弱的一种引用关系，一个对象是否有幻象引用的存在完全不会对其生存时间构成影响，也无法通过幻象引用来获取一个实例。
 幻象引用的用途是在对象被垃圾收集器回收之后收到一个系统通知，类似于“finalization”机制，但是更加灵活和可控。
