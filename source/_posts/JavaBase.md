@@ -308,25 +308,26 @@ handler 拒绝策略
 
 ### 提交流程
 ```mermaid
----
-title: 提交流程
----
 flowchart LR
-  submit=>start: 提交任务
-  coremax=>condition: 核心线程是否已满
-  queuemax=>condition: 阻塞队列是否已满
-  threadmax=>condition: 是否已达到最大线程数
-  reject=>end: 拒绝策略
-  core=>operation: 创建核心线程，执行任务
-  queue=>operation: 加入到阻塞队列中排队
-  temp=>operation: 创建临时线程，执行任务(设置keepAliveTime)
-  submit->coremax
-  coremax(yes)->queuemax
-  coremax(no)->core
-  queuemax(yes)->threadmax
-  queuemax(no)->queue
-  threadmax(yes)->reject
-  threadmax(no)->temp
+  submit(提交任务)
+  coremax{核心线程是否已满}
+  queuemax{阻塞队列是否已满}
+  threadmax{是否已达到最大线程数}
+  reject(拒绝策略)
+  core["'创建核心线程
+  执行任务'"]
+  queue[加入到阻塞队列中排队]
+  temp["'创建临时线程，执行任务
+  (设置keepAliveTime)'"]
+  submit --> coremax
+  coremax--是-->queuemax
+  coremax--否-->core
+  queuemax--是-->threadmax
+  queuemax--否-->queue
+  threadmax--是-->reject
+  threadmax--否-->temp
+
+
 ```
 
 
