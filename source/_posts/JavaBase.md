@@ -308,7 +308,6 @@ handler 拒绝策略
 
 ### 提交流程
 {% mermaid %}
-```mermaid
 flowchart LR
   submit(提交任务)
   coremax{核心线程是否已满}
@@ -327,9 +326,6 @@ flowchart LR
   queuemax--否-->queue
   threadmax--是-->reject
   threadmax--否-->temp
-
-
-```
 {% endmermaid %}
 
 
