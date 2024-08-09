@@ -55,7 +55,7 @@ disable_top_img: false
 index_img:
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: /img/lqy.jpg
+default_top_img: /img/ym.jpg
   # https://s21.ax1x.com/2024/08/04/pkvKPDs.jpg
 
 # The banner image of archive page
@@ -81,7 +81,7 @@ category_per_img:
 
 cover:
   # display the cover or not (是否顯示文章封面)
-  index_enable: true
+  index_enable: false
   aside_enable: true
   archives_enable: true
   # the position of cover in home page (封面顯示的位置)
@@ -89,8 +89,6 @@ cover:
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
-    # - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
-
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
   flink: /img/cmy.jpeg
@@ -644,10 +642,10 @@ text_align_justify: true
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: /img/lqymjl.jpg
+background: url("/img/ym.jpg")
 
 # Footer Background
-footer_bg: /img/mjl.jpg
+footer_bg: true
 
 # Add mask to header or footer (为 header 或 footer 添加黑色半透遮罩)
 mask:
