@@ -307,6 +307,7 @@ handler 拒绝策略
 ```
 
 ### 提交流程
+{% mermaid %}
 ```mermaid
 flowchart LR
   submit(提交任务)
@@ -329,7 +330,7 @@ flowchart LR
 
 
 ```
-
+{% endmermaid %}
 
 
 ### 执行流程
