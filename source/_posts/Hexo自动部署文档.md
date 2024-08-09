@@ -1,4 +1,3 @@
-
 ---
 title: Actions实现Hexo个人博客在GIthubPages上的自动部署
 date: 2024-08-08
@@ -39,26 +38,33 @@ abcjs:
 
 - Hexo
 
-  - ```
+```
     $ npm install -g hexo-cli //全局安装
     $ npm install hexo //局部安装
-    ```
+    
+```
 
 ## Hexo初始化
 
 - 新建文件夹初始化Hexo框架
 
-  - ```
-    hexo init
-    ```
+```
+hexo init
+```
 
-- 清除部署缓存并开启本地服务
+- 清除部署缓存并开启本地服务 
 
-  - ```
+```
+hexo clean
+    hexo server
+    //访问localhost:4000可以看到hexo的helloWorld博客界面
     hexo clean
     hexo server
     //访问localhost:4000可以看到hexo的helloWorld博客界面
-    ```
+```
+
+
+
 
 ## 主题
 
@@ -66,22 +72,21 @@ abcjs:
 
 - 从github上拉取或者通过NPM下载
 
-  - ```
-    git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
+```
+git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
     
     npm i hexo-theme-butterfly
     //放置到目录下的theme文件夹中
-    ```
-
-    
-
+```
 - 修改 hexo 配置文件`_config.yml`
 
-  - ```yaml
+```yaml
     theme:主题名称
-    ```
+```
 
 - **！！！记得删除.git文件不然无法push到gihub中**
+
+
 
 ### 配置
 
@@ -114,11 +119,11 @@ deploy:
   branch: gh_pages # 注意分支名，要与之后的actions中配置相对应，最好就用这个
 ```
 
-- ```
+```
   //博客根目录执行
   hexo clean //清除旧的部署文件
   hexo deploy //一键部署
-  ```
+```
 
 - 等待GithubActions执行结束
 
@@ -138,8 +143,7 @@ deploy:
 - 在workflows文件夹中创建page.yml(名称无所谓）
 
 - 编写部署流程：
-
-  - ```yaml
+```yaml
     name: Pages
     
     # 触发器、分支
@@ -210,7 +214,7 @@ deploy:
           - name: Get the output
             run: |
               echo "${{ steps.deploy.outputs.notify }}"
-    ```
+```
 
 
 
@@ -224,15 +228,15 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generati
 
 2. Paste the text below, replacing the email used in the example with your GitHub email address.
 
-   ```shell
+```shell
    ssh-keygen -t ed25519 -C "your_email@example.com"
-   ```
+```
 
    **Note:** If you are using a legacy system that doesn't support the Ed25519 algorithm, use:
 
-   ```shell
+```shell
     ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-   ```
+```
 
 ​	3. 得到id_ed25519.pub（公钥）和id_ed25519（私钥）两个文件
 
@@ -253,4 +257,3 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generati
 ### 等待Actions部署完毕
 
 ### 访问https://你的用户名.github.io/
-
