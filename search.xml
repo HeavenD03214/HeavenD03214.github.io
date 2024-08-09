@@ -12,56 +12,88 @@
 <li><p>Node.js</p>
 </li>
 <li><p>Hexo</p>
-<ul>
-<li><pre><code>$ npm install -g hexo-cli //全局安装
-$ npm install hexo //局部安装
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">## Hexo初始化</span><br><span class="line"></span><br><span class="line">- 新建文件夹初始化Hexo框架</span><br><span class="line"></span><br><span class="line">  - ```</span><br><span class="line">    hexo init</span><br></pre></td></tr></table></figure>
-</code></pre>
 </li>
 </ul>
-</li>
-<li><p>清除部署缓存并开启本地服务</p>
-<ul>
-<li><pre><code>hexo clean
-hexo server
-//访问localhost:4000可以看到hexo的helloWorld博客界面
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">## 主题</span><br><span class="line"></span><br><span class="line">### 下载</span><br><span class="line"></span><br><span class="line">- 从github上拉取或者通过NPM下载</span><br><span class="line"></span><br><span class="line">  - ```</span><br><span class="line">    git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br><span class="line">    </span><br><span class="line">    npm i hexo-theme-butterfly</span><br><span class="line">    //放置到目录下的theme文件夹中</span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo-cli //全局安装</span><br><span class="line">$ npm install hexo //局部安装</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Hexo初始化"><a href="#Hexo初始化" class="headerlink" title="Hexo初始化"></a>Hexo初始化</h2><ul>
+<li>新建文件夹初始化Hexo框架</li>
 </ul>
-</li>
-<li><p>修改 hexo 配置文件<code>_config.yml</code></p>
-<ul>
-<li><pre><code class="yaml">theme:主题名称
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- **！！！记得删除.git文件不然无法push到gihub中**</span><br><span class="line"></span><br><span class="line">### 配置</span><br><span class="line"></span><br><span class="line">&gt; 参考文档：[Butterfly 安裝文檔(一) 快速開始 | Butterfly](https://butterfly.js.org/posts/21cfbf15/)</span><br><span class="line"></span><br><span class="line">- 一般配置_config.yml文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># GIthubPages挂载</span><br><span class="line"></span><br><span class="line">## 创建仓库</span><br><span class="line"></span><br><span class="line">- 仓库名必须是：你的用户名.github.io</span><br><span class="line"></span><br><span class="line">## Hexo一键部署</span><br><span class="line"></span><br><span class="line">- 安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<p>$ npm install hexo-deployer-git –save</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 编辑 **_config.yml** （示例值如下所示）：</span><br><span class="line"></span><br><span class="line">```yaml</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt; # 创建的仓库远程连接</span><br><span class="line">  branch: gh_pages # 注意分支名，要与之后的actions中配置相对应，最好就用这个</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><pre><code>//博客根目录执行
-hexo clean //清除旧的部署文件
-hexo deploy //一键部署
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 等待GithubActions执行结束</span><br><span class="line"></span><br><span class="line">- 进入仓库Setteings查看Pages</span><br><span class="line"></span><br><span class="line">  - 可以看到分支gh_pages已经挂载到Pages上</span><br><span class="line">  - 点击https://你的用户名.github.io/可以访问到博客</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Actions实现自动化挂载</span><br><span class="line"></span><br><span class="line">## 创建工作流</span><br><span class="line"></span><br><span class="line">- 在根目录的.github文件夹中创建workflows文件夹</span><br><span class="line"></span><br><span class="line">- 在workflows文件夹中创建page.yml(名称无所谓）</span><br><span class="line"></span><br><span class="line">- 编写部署流程：</span><br><span class="line"></span><br><span class="line">  - ```yaml</span><br><span class="line">    name: Pages</span><br><span class="line">    </span><br><span class="line">    # 触发器、分支</span><br><span class="line">    on:</span><br><span class="line">      push:</span><br><span class="line">        branches:</span><br><span class="line">          - master  # default branch</span><br><span class="line">    jobs:</span><br><span class="line">      # 子任务</span><br><span class="line">      pages:</span><br><span class="line">        runs-on: ubuntu-latest # 定运行所需要的虚拟机环境                     1</span><br><span class="line">        permissions:</span><br><span class="line">          contents: write</span><br><span class="line">        steps:</span><br><span class="line">          - uses: actions/checkout@v2</span><br><span class="line">            # with:</span><br><span class="line">            #   submodules: true</span><br><span class="line">            #   fetch-depth: 0</span><br><span class="line">          # 每个name表示一个步骤:step</span><br><span class="line">          - name: Use Node.js 16.x</span><br><span class="line">            uses: actions/setup-node@v2</span><br><span class="line">            with:</span><br><span class="line">              node-version: &#x27;18.19.0&#x27; # 自己正在使用的node版本即可            2</span><br><span class="line">          - name: 安装 Hexo</span><br><span class="line">            run: |</span><br><span class="line">              export TZ=&#x27;Asia/Shanghai&#x27;</span><br><span class="line">              npm install hexo-cli -g</span><br><span class="line">          - name: 缓存 Hexo                   #                            3 </span><br><span class="line">            id: cache-npm</span><br><span class="line">            uses: actions/cache@v3</span><br><span class="line">            env:</span><br><span class="line">              cache-name: cache-node-modules</span><br><span class="line">            with:</span><br><span class="line">              path: node_modules</span><br><span class="line">              key: $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-$&#123;&#123; hashFiles(&#x27;**/package-lock.json&#x27;) &#125;&#125;</span><br><span class="line">              restore-keys: |</span><br><span class="line">                $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-</span><br><span class="line">                $&#123;&#123; runner.os &#125;&#125;-build-</span><br><span class="line">                $&#123;&#123; runner.os &#125;&#125;-</span><br><span class="line">          - name: 安装依赖                     #                            4</span><br><span class="line">            if: $&#123;&#123; steps.cache-npm.outputs.cache-hit != &#x27;true&#x27; &#125;&#125;</span><br><span class="line">            run: |</span><br><span class="line">              npm install --save</span><br><span class="line">          - name: 查看插件</span><br><span class="line">            run: |</span><br><span class="line">              npm ls --depth 0</span><br><span class="line">              </span><br><span class="line">          - name: 生成静态文件                  #                            5</span><br><span class="line">            run: |</span><br><span class="line">              hexo clean</span><br><span class="line">              hexo generate</span><br><span class="line">    </span><br><span class="line">          - name: Deploy                     #                             6</span><br><span class="line">            uses: peaceiris/actions-gh-pages@v3 </span><br><span class="line">            with:</span><br><span class="line">              deploy_key: $&#123;&#123; secrets.ACTIONS_DEPLOY_KEY  &#125;&#125;</span><br><span class="line">              user_name: heaven</span><br><span class="line">              user_email: heaven@163.com</span><br><span class="line">              # 获取提交文章源码时的commit message，作为发布gh-pages分支的信息</span><br><span class="line">              commit_message: $&#123;&#123; github.event.head_commit.message &#125;&#125;</span><br><span class="line">              full_commit_message: $&#123;&#123; github.event.head_commit.message &#125;&#125;</span><br><span class="line">              github_token: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;</span><br><span class="line">              # GITHUB_TOKEN不是个人访问令牌，GitHub Actions 运行器会自动创建一个GITHUB_TOKEN密钥</span><br><span class="line">              # 以在您的工作流程中进行身份验证。因此，您无需任何配置即可立即开始部署</span><br><span class="line">              publish_dir: ./public</span><br><span class="line">              allow_empty_commit: true # 允许空提交</span><br><span class="line">          # Use the output from the `deploy` step(use for test action)</span><br><span class="line">          - name: Get the output</span><br><span class="line">            run: |</span><br><span class="line">              echo &quot;$&#123;&#123; steps.deploy.outputs.notify &#125;&#125;&quot;</span><br></pre></td></tr></table></figure>
-</code></pre>
+<li>清除部署缓存并开启本地服务</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">    hexo server</span><br><span class="line">    //访问localhost:4000可以看到hexo的helloWorld博客界面</span><br><span class="line">    hexo clean</span><br><span class="line">    hexo server</span><br><span class="line">    //访问localhost:4000可以看到hexo的helloWorld博客界面</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><ul>
+<li>从github上拉取或者通过NPM下载</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br><span class="line">    </span><br><span class="line">    npm i hexo-theme-butterfly</span><br><span class="line">    //放置到目录下的theme文件夹中</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改 hexo 配置文件<code>_config.yml</code></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">theme:主题名称</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>！！！记得删除.git文件不然无法push到gihub中</strong></li>
+</ul>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><blockquote>
+<p>参考文档：<a href="https://butterfly.js.org/posts/21cfbf15/">Butterfly 安裝文檔(一) 快速開始 | Butterfly</a></p>
+</blockquote>
+<ul>
+<li>一般配置_config.yml文件</li>
+</ul>
+<h1 id="GIthubPages挂载"><a href="#GIthubPages挂载" class="headerlink" title="GIthubPages挂载"></a>GIthubPages挂载</h1><h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><ul>
+<li>仓库名必须是：你的用户名.github.io</li>
+</ul>
+<h2 id="Hexo一键部署"><a href="#Hexo一键部署" class="headerlink" title="Hexo一键部署"></a>Hexo一键部署</h2><ul>
+<li>安装 <a href="https://github.com/hexojs/hexo-deployer-git">hexo-deployer-git</a>。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>编辑 <strong>_config.yml</strong> （示例值如下所示）：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">&lt;repository</span> <span class="string">url&gt;</span> <span class="comment"># 创建的仓库远程连接</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh_pages</span> <span class="comment"># 注意分支名，要与之后的actions中配置相对应，最好就用这个</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//博客根目录执行</span><br><span class="line">hexo clean //清除旧的部署文件</span><br><span class="line">hexo deploy //一键部署</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>等待GithubActions执行结束</p>
 </li>
+<li><p>进入仓库Setteings查看Pages</p>
+<ul>
+<li>可以看到分支gh_pages已经挂载到Pages上</li>
+<li>点击https:&#x2F;&#x2F;你的用户名.github.io&#x2F;可以访问到博客</li>
+</ul>
+</li>
+</ul>
+<h1 id="Actions实现自动化挂载"><a href="#Actions实现自动化挂载" class="headerlink" title="Actions实现自动化挂载"></a>Actions实现自动化挂载</h1><h2 id="创建工作流"><a href="#创建工作流" class="headerlink" title="创建工作流"></a>创建工作流</h2><ul>
+<li><p>在根目录的.github文件夹中创建workflows文件夹</p>
+</li>
+<li><p>在workflows文件夹中创建page.yml(名称无所谓）</p>
+</li>
+<li><p>编写部署流程：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Pages</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 触发器、分支</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span>  <span class="comment"># default branch</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="comment"># 子任务</span></span><br><span class="line">  <span class="attr">pages:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span> <span class="comment"># 定运行所需要的虚拟机环境                     1</span></span><br><span class="line">    <span class="attr">permissions:</span></span><br><span class="line">      <span class="attr">contents:</span> <span class="string">write</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="comment"># with:</span></span><br><span class="line">        <span class="comment">#   submodules: true</span></span><br><span class="line">        <span class="comment">#   fetch-depth: 0</span></span><br><span class="line">      <span class="comment"># 每个name表示一个步骤:step</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Use</span> <span class="string">Node.js</span> <span class="number">16.</span><span class="string">x</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&#x27;18.19.0&#x27;</span> <span class="comment"># 自己正在使用的node版本即可            2</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">安装</span> <span class="string">Hexo</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          export TZ=&#x27;Asia/Shanghai&#x27;</span></span><br><span class="line"><span class="string">          npm install hexo-cli -g</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">缓存</span> <span class="string">Hexo</span>                   <span class="comment">#                            3 </span></span><br><span class="line">        <span class="attr">id:</span> <span class="string">cache-npm</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v3</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">cache-name:</span> <span class="string">cache-node-modules</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">          <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-build-$&#123;&#123;</span> <span class="string">env.cache-name</span> <span class="string">&#125;&#125;-$&#123;&#123;</span> <span class="string">hashFiles(&#x27;**/package-lock.json&#x27;)</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">restore-keys:</span> <span class="string">|</span></span><br><span class="line"><span class="string">            $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-</span></span><br><span class="line"><span class="string">            $&#123;&#123; runner.os &#125;&#125;-build-</span></span><br><span class="line"><span class="string">            $&#123;&#123; runner.os &#125;&#125;-</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">安装依赖</span>                     <span class="comment">#                            4</span></span><br><span class="line">        <span class="attr">if:</span> <span class="string">$&#123;&#123;</span> <span class="string">steps.cache-npm.outputs.cache-hit</span> <span class="type">!=</span> <span class="string">&#x27;true&#x27;</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm install --save</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">查看插件</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm ls --depth 0</span></span><br><span class="line"><span class="string"></span>          </span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">生成静态文件</span>                  <span class="comment">#                            5</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo clean</span></span><br><span class="line"><span class="string">          hexo generate</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span>                     <span class="comment">#                             6</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v3</span> </span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">deploy_key:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.ACTIONS_DEPLOY_KEY</span>  <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">user_name:</span> <span class="string">heaven</span></span><br><span class="line">          <span class="attr">user_email:</span> <span class="string">heaven@163.com</span></span><br><span class="line">          <span class="comment"># 获取提交文章源码时的commit message，作为发布gh-pages分支的信息</span></span><br><span class="line">          <span class="attr">commit_message:</span> <span class="string">$&#123;&#123;</span> <span class="string">github.event.head_commit.message</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">full_commit_message:</span> <span class="string">$&#123;&#123;</span> <span class="string">github.event.head_commit.message</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">github_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="comment"># GITHUB_TOKEN不是个人访问令牌，GitHub Actions 运行器会自动创建一个GITHUB_TOKEN密钥</span></span><br><span class="line">          <span class="comment"># 以在您的工作流程中进行身份验证。因此，您无需任何配置即可立即开始部署</span></span><br><span class="line">          <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br><span class="line">          <span class="attr">allow_empty_commit:</span> <span class="literal">true</span> <span class="comment"># 允许空提交</span></span><br><span class="line">      <span class="comment"># Use the output from the `deploy` step(use for test action)</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Get</span> <span class="string">the</span> <span class="string">output</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">echo</span> <span class="string">&quot;$<span class="template-variable">&#123;&#123; steps.deploy.outputs.notify &#125;&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="部署密钥"><a href="#部署密钥" class="headerlink" title="部署密钥"></a>部署密钥</h2><h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><p><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key">https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key</a></p>
 <ol>
 <li><p>Open Git Bash.</p>
 </li>
 <li><p>Paste the text below, replacing the email used in the example with your GitHub email address.</p>
+</li>
+</ol>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
 
-<p><strong>Note:</strong> If you are using a legacy system that doesn’t support the Ed25519 algorithm, use:</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure></li>
-</ol>
+<p>   <strong>Note:</strong> If you are using a legacy system that doesn’t support the Ed25519 algorithm, use:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
+
 <p>​	3. 得到id_ed25519.pub（公钥）和id_ed25519（私钥）两个文件</p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><ul>
 <li><p>仓库Settings</p>
 </li>
 <li><p>Deploy keys</p>
@@ -89,6 +121,30 @@ hexo deploy //一键部署
         <tag>Hexo</tag>
         <tag>GIthubPages</tag>
         <tag>GIthubActions</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/08/07/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>Hello</category>
+      </categories>
+      <tags>
+        <tag>Hello</tag>
       </tags>
   </entry>
   <entry>
@@ -549,30 +605,6 @@ hexo deploy //一键部署
         <tag>stream流</tag>
         <tag>JavaAPI</tag>
         <tag>JVM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/08/07/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>Hello</category>
-      </categories>
-      <tags>
-        <tag>Hello</tag>
       </tags>
   </entry>
 </search>
